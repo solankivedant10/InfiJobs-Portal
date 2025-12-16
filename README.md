@@ -1,262 +1,144 @@
 InfiJobs Portal
 
-AI-Powered Interview Prep & Learning Platform
+AI‑Powered Interview Preparation & Role‑Based Learning Platform
 
-A modern React application for tech interview preparation featuring 9 role-based tutorial portals, AI-powered coding practice, interactive quizzes, and comprehensive learning paths.
+InfiJobs Portal is a production-ready, full-stack web application built to simulate how modern candidates learn, practice, and get evaluated for technical roles. The project demonstrates strong frontend engineering, clean architecture, real backend integration, and the application of AI — not just UI demos.
 
-🚀 Tech Stack
+This repository is intended to showcase real‑world engineering skills, including scalable React architecture, secure authentication, database design, and AI‑assisted developer tooling.
 
-| Category | Technology |
-|----------|------------|
-| Framework | React 19.2 + TypeScript 5.8 |
-| Build Tool | Vite 6.2 |
-| Styling | Tailwind CSS 3.4 |
-| Routing | React Router DOM 6.22 |
-| AI Integration | Google GenAI SDK (`@google/genai`) |
-| Icons | Lucide React |
-| Markdown | React Markdown |
+Core Capabilities
 
-📁 Project Architecture
+Role‑Based Learning Platforms: The application supports 9 distinct career tracks, each implemented as an isolated feature module:
 
-infijob-frontend/
-├── config/                    # App configuration
-│   └── api.ts                 # API base URL & endpoints (backend-ready)
-│
-├── shared/                    # Reusable modules
-│   ├── hooks/                 # Custom React hooks
-│   │   ├── useTheme.ts        # Light/dark mode toggle
-│   │   ├── useScrollAnimation.ts
-│   │   └── useCyclingText.ts
-│   └── components/            # Shared UI components
-│       ├── UI.tsx             # Button, Card, inputClasses
-│       ├── Section.tsx        # Layout wrapper
-│       ├── BackToTop.tsx      # Scroll-to-top button
-│       └── AnimatedBackground.tsx  # Galaxy starfield effect
-│
-├── features/                  # Feature-based modules
-│   ├── auth/                  # Authentication module
-│   │   ├── authService.ts     # Login/register with token pattern
-│   │   ├── sessionService.ts  # Session persistence
-│   │   ├── bookmarkService.ts # User bookmarks
-│   │   └── types.ts           # User, AuthResponse types
-│   │
-│   ├── tutorial-portal/       # Tutorial hub landing page
-│   ├── ml-portal/             # Machine Learning tutorials
-│   ├── da-portal/             # Data Analytics tutorials
-│   ├── ba-portal/             # Business Analyst tutorials
-│   ├── ds-portal/             # Data Scientist tutorials
-│   ├── de-portal/             # Data Engineering tutorials
-│   ├── bi-portal/             # Business Intelligence tutorials
-│   ├── sca-portal/            # Supply Chain Analyst tutorials
-│   ├── fe-portal/             # Frontend Developer tutorials
-│   ├── java-portal/           # Java Full Stack tutorials
-│   └── coding/                # Coding practice components
-│
-├── services/                  # Business logic layer
-│   ├── dataService.ts         # Async data fetching (backend-ready)
-│   ├── geminiService.ts       # Google AI integration
-│   ├── codingData.ts          # Static coding problems
-│   ├── storageService.ts      # User stats persistence
-│   └── types.ts               # Core type definitions
-│
-├── components/                # Legacy UI components
-│   ├── layout/                # Navbar, Footer
-│   ├── quiz/                  # Quiz modal components
-│   └── ...                    # Section components
-│
-├── context/                   # React Context providers
-│   ├── AuthContext.tsx        # Global auth state
-│   └── CodingContext.tsx      # Coding environment state
-│
-├── data/                      # Static data files
-│   ├── mockData.ts            # Learning cards, quizzes, roadmaps
-│   ├── mlTutorialData.ts      # ML tutorial content
-│   ├── dataAnalyticsTutorialData.ts
-│   └── ...                    # Role-specific tutorial data
-│
-└── pages/                     # Route components
-    ├── Home.tsx               # Main landing page
-    └── CodingPage.tsx         # AI coding environment
+Machine Learning Engineer (pipelines, models, visualizers)
+Data Scientist (ML, statistics, deep learning)
+Data Engineer (ETL, big data, cloud)
+Data Analyst (Python, SQL, visualization)
+Business Analyst (SQL, process modeling)
+Business Intelligence (Power BI, Tableau)
+Supply Chain Analyst (forecasting, logistics)
+Frontend Developer (React, modern web practices)
+Java Full‑Stack Developer (Spring Boot, microservices)
 
-📖 Code Dictionary
+Each role has its own learning flow, quizzes, and progress tracking.
 
-Features (`/features`)
+Interactive Coding Environment
 
-| Module | Description |
-|--------|-------------|
-| `auth/authService.ts` | Token-based authentication (JWT-ready) |
-| `auth/sessionService.ts` | User session management |
-| `tutorial-portal/TutorialPortalHub.tsx` | Landing page for all 9 tutorial portals |
-| `ml-portal/*` | Machine Learning tutorial with sidebar & topics |
-| `da-portal/*` | Data Analytics tutorial with Python examples |
-| `coding/*` | Code editor, output panel, problem display |
+1. In‑Browser IDE for hands‑on problem solving
+2. AI‑Powered Code Feedback using Google Gemini 2.0 Flash
+3. Multi‑Language Support: Python, SQL, Java, JavaScript
 
-Services (`/services`)
+Learning & Assessment Tools
 
-| File | Purpose |
-|------|---------|
-| `dataService.ts` | Async data access with mock delays (replace with API) |
-| `geminiService.ts` | Google Gemini AI for code generation & evaluation |
-| `codingData.ts` | Static coding problems with test cases |
-| `storageService.ts` | User stats & progress persistence |
-| `reportService.ts` | PDF/CSV report generation |
+Interactive career roadmaps with progress tracking
+Role‑specific quizzes with instant evaluation
+Bookmarking system for saving resources and projects
+Persistent user profiles with learning history
 
-Shared (`/shared`)
+Authentication & User Management
 
-| File | Purpose |
-|------|---------|
-| `hooks/useTheme.ts` | Light/dark mode with localStorage persistence |
-| `hooks/useScrollAnimation.ts` | Intersection Observer animation trigger |
-| `components/UI.tsx` | Button, Card, inputClasses primitives |
-| `components/AnimatedBackground.tsx` | 3-layer parallax starfield |
+Secure authentication using Supabase Auth
+Session handling and protected routes
+User profiles tracking:
 
-Config (`/config`)
+quiz scores
+completed roadmap steps
+saved content
 
-| File | Purpose |
-|------|---------|
-| `api.ts` | `API_BASE_URL`, `API_ENDPOINTS`, `buildUrl()` helper |
+A custom animated authentication overlay ("Galaxy UI") demonstrates advanced UI/UX execution.
 
-✨ Features
+Technical Stack
 
-🎓 Tutorial Portals (9 Roles)
-- Machine Learning - 13 topics with pipeline visualizer
-- Data Analytics - 9 topics with Python examples
-- Business Analyst - 12 SQL topics
-- Data Scientist - 9 topics covering ML & statistics
-- Data Engineering - 9 topics on ETL & pipelines
-- Business Intelligence - 11 topics on BI tools
-- Supply Chain Analyst - 9 topics on logistics & forecasting
-- Frontend Developer - 9 topics on HTML/CSS/JS/React
-- Java Full Stack - 11 topics on Spring Boot & REST
+| Layer         | Technology                            |
+| ------------- | ------------------------------------- |
+| Frontend      | React 19, TypeScript 5, Vite 6        |
+| Styling       | Tailwind CSS, Framer Motion           |
+| Backend       | Supabase (PostgreSQL, Auth, Realtime) |
+| AI            | Google Gemini 2.0 Flash               |
+| State         | React Context API                     |
+| Routing       | React Router DOM 6                    |
+| Visualization | Recharts, Spline (3D)                 |
 
-💻 AI Coding Environment
-- Real-time code evaluation with Gemini AI
-- Multiple language support
-- Instant feedback & scoring
+All technologies were chosen for production relevance, not novelty.
 
-📝 Interactive Quizzes
-- Role-specific screening questions
-- Score tracking & progress history
+Architecture Overview
 
-🗺️ Learning Roadmaps
-- Step-by-step career paths
-- Progress persistence
+The project uses a Feature‑Based Architecture, enabling scalability and clear separation of concerns.
 
-📋 Content Management Guide
+```
+src/
+├── config/           # Environment & API configuration
+├── features/         # Domain‑specific feature modules
+│   ├── auth/
+│   ├── coding/
+│   ├── ml-portal/
+│   └── other role portals
+├── services/         # Data & AI integration layer
+├── shared/           # Reusable UI components & hooks
+├── assets/           # Static assets
+└── App.tsx           # Application entry point
+```
 
-Add a New Tutorial Portal
-
-1. Create data file in `/data/`:
-typescript
-   // data/newRoleTutorialData.ts
-   export const newRoleTutorialData = [
-     { id: 'intro', title: 'Introduction', subtopics: [...] }
-   ];
-   
-
-2. Create portal component in `/features/newrole-portal/`:
-typescript
-   // features/newrole-portal/NewRolePortalLayout.tsx
-   export const NewRolePortalLayout = () => { ... };
-   export const NewRoleTopicView = () => { ... };
-
-3. Add route in `App.tsx`:
-typescript
-   <Route path="/newrole-portal" element={<NewRolePortalLayout />}>
-     <Route index element={<NewRoleTopicView />} />
-     <Route path=":topicId" element={<NewRoleTopicView />} />
-   </Route>
-
-4. Add to hub in `TutorialPortalHub.tsx`:
-typescript
-   { id: 'newrole-portal', title: 'New Role', icon: SomeIcon, ... }
-
-Add a New Quiz
-
-1. Open `/data/mockData.ts`
-2. Add to `quizData` object:
-typescript
-   'newrole-quiz': {
-     title: 'New Role Quiz',
-     description: '...',
-     questions: [{ q: '...', o: ['A','B','C','D'], a: 0 }]
-   }
-   
-
-Add a New Coding Problem
-
-1. Open `/services/codingData.ts`
-2. Add to `codingProblems` array:
-typescript
-   {
-     id: 'unique-id',
-     title: 'Problem Title',
-     difficulty: 'Easy',
-     description: '...',
-     starterCode: 'function solve() { }',
-     testCases: [{ input: '...', expected: '...' }]
-   }
-   
-
-⚙️ Setup & Deployment
-
-Prerequisites
-- Node.js v18+
-- npm or yarn
-
-Installation
-
-bash
-Clone repository
-git clone <repo-url>
-cd infijob-frontend
-
-Install dependencies
-npm install
-
-Environment Variables
-
-Create `.env.local`:
-env
-VITE_API_KEY=your_gemini_api_key
-VITE_API_URL=http://localhost:3001/api  # For backend integration
-
-Development
-
-bash
-npm run dev
-
-Opens at http://localhost:5173
-
-Production Build
-
-bash
-npm run build
-
-Output: dist/ directory
-
-Preview Production
-
-bash
-npm run preview
+This structure allows new career roles or features to be added with minimal impact on existing code.
 
 ---
 
-🔧 Backend Integration
+Backend & Data Model
 
-The app is backend-ready with:
+PostgreSQL database hosted on Supabase
+11 relational tables supporting:
 
-| Feature | Location | Status |
-|---------|----------|--------|
-| API Config | `config/api.ts` | ✅ Ready |
-| Token Auth | `features/auth/authService.ts` | ✅ JWT-ready |
-| Async Data | `services/dataService.ts` | ✅ Mock delays |
+users & profiles
+roles & learning paths
+quizzes & submissions
+bookmarks & progress tracking
 
-To connect backend:
-1. Set `VITE_API_URL` in `.env.local`
-2. Search for `// TODO: Replace with` comments
-3. Replace mock implementations with `fetch()` calls
+All data access is abstracted through a service layer to keep UI logic clean.
 
-📄 License
+ Local Setup (Optional)
 
-MIT License - See LICENSE file for details.
+```bash
+git clone https://github.com/yourusername/infijobs-portal.git
+cd infijobs-portal
+npm install
+npm run dev
+```
+
+Environment variables are used for Supabase and Google AI credentials.
+
+---
+
+Deployment
+
+Deployed via **Netlify**
+SPA routing handled with `netlify.toml`
+Environment variables securely configured
+
+The app runs as a fully client‑side rendered production build.
+
+ What This Project Demonstrates
+
+Strong React + TypeScript fundamentals
+Scalable frontend architecture
+Secure authentication and backend integration
+Practical AI integration in developer tooling
+Clean separation of concerns
+Product‑level thinking, not just feature demos
+
+Engineering Tradeoffs & Design Decisions
+
+This project intentionally makes several tradeoffs to mirror real-world product constraints:
+
+Client-heavy architecture: The app favors a rich frontend with Supabase handling auth and persistence, reducing backend complexity while maintaining production-grade security.
+Feature-based modularity over monorepo complexity: Each career portal is isolated as a feature module, prioritizing maintainability and onboarding speed over premature abstraction.
+AI as an assistant, not an oracle: Gemini is used for evaluation and guided hints instead of full solutions to preserve learning integrity and interview realism.
+Context API over heavier state managers: React Context was chosen to avoid unnecessary complexity while keeping state predictable at current scale.
+PostgreSQL relational model: A normalized schema was preferred over NoSQL flexibility to support clear relationships between users, roles, quizzes, and progress.
+
+These decisions prioritize clarity, scalability, and developer experience over novelty.
+
+License
+
+MIT License
+
+<p align="center">Built with ❤️ by Vedant</p>
