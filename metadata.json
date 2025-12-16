@@ -1,0 +1,5 @@
+{
+  "name": "InfiJobs",
+  "description": "A real-time AI coding interview practice platform with Text-to-Speech feedback provided by Gemini 2.5.",
+  "requestFramePermissions": []
+}
