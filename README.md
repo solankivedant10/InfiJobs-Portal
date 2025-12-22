@@ -79,7 +79,7 @@ All data access is abstracted through a service layer to keep UI logic clean.
 
 ---
 
-##⚙️ Local Setup (Optional)```bash
+⚙️ Local Setup (Optional) bash
 git clone https://github.com/yourusername/infijobs-portal.git
 cd infijobs-portal
 npm install
