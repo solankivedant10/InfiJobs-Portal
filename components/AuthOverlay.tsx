@@ -19,7 +19,7 @@ const AuthOverlay: React.FC = () => {
 
   // Typing Animation
   useEffect(() => {
-    const text = "Buuild Real Skills. Accelerate Your Career!";
+    const text = "Build Real Skills. Accelerate Your Career!";
     let currentIndex = 0;
 
     // Clear previous text just in case
