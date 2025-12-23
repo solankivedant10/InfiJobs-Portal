@@ -6,7 +6,18 @@
  */
 
 // Base URL for all API calls
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+const getApiBaseUrl = (): string => {
+    const envUrl = import.meta.env.VITE_API_URL;
+    if (envUrl) return envUrl;
+
+    // Only allow localhost fallback in development
+    if (import.meta.env.MODE === 'development') {
+        return 'http://localhost:3001/api';
+    }
+    throw new Error('VITE_API_URL is required in production. Set it in Vercel environment variables.');
+};
+
+export const API_BASE_URL = getApiBaseUrl();
 
 // API Endpoints
 export const API_ENDPOINTS = {

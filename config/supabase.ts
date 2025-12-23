@@ -14,9 +14,14 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 // Validate environment variables
+const isProduction = import.meta.env.MODE === 'production';
+
 if (!supabaseUrl || !supabaseAnonKey) {
-    console.error('Missing Supabase environment variables!');
-    console.error('Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your .env.local file');
+    const message = 'Missing required environment variables: VITE_SUPABASE_URL and/or VITE_SUPABASE_ANON_KEY';
+    if (isProduction) {
+        throw new Error(message);
+    }
+    console.error(message + '. Add them to .env.local for local development.');
 }
 
 // Create and export the Supabase client
