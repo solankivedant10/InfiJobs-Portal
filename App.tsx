@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import AuthOverlay from './components/AuthOverlay';
@@ -143,6 +144,8 @@ const App: React.FC = () => {
         </Router>
         {/* Bookmark Sync Indicator */}
         <BookmarkSyncIndicator />
+        {/* Vercel Analytics */}
+        <Analytics />
       </AuthProvider>
     </ToastProvider>
   );
