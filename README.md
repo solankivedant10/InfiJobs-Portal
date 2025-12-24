@@ -184,5 +184,3 @@ MIT License
 <p align="center">
 Built with ❤️ by <strong>Vedant</strong>
 </p>
-
-Just tell me.
