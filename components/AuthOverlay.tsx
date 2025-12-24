@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { login as authLogin, register as authRegister } from '../features/auth/authService';
@@ -7,7 +7,6 @@ const AuthOverlay: React.FC = () => {
   const { login } = useAuth();
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [typedText, setTypedText] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -16,26 +15,6 @@ const AuthOverlay: React.FC = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [confirm, setConfirm] = useState('');
-
-  // Typing Animation
-  useEffect(() => {
-    const text = "Build Real Skills. Accelerate Your Career!";
-    let currentIndex = 0;
-
-    // Clear previous text just in case
-    setTypedText('');
-
-    const typingInterval = setInterval(() => {
-      if (currentIndex < text.length) {
-        setTypedText(prev => prev + text.charAt(currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 50);
-
-    return () => clearInterval(typingInterval);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,7 +70,7 @@ const AuthOverlay: React.FC = () => {
       }
     } catch (err: any) {
       console.error('Auth error:', err);
-      setError(err.message || 'An unexpected error occurred. Please try again.');
+      setError(err?.message || 'An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -101,31 +80,23 @@ const AuthOverlay: React.FC = () => {
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900">
       {/* Background Layers */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* ✅ FIX 1: Increased opacity to 40% and removed 'mix-blend-overlay' so colors show through */}
         <img
           src="/assets/logo.gif"
           alt="Background animation"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         />
-
-        {/* ✅ FIX 2: Reduced the black overlay slightly so the GIF shines more */}
         <div className="absolute inset-0 bg-gray-900/80 backdrop-blur-sm z-10"></div>
-
-        {/* Fallback gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black z-[-1]"></div>
       </div>
 
       <div className="relative z-20 w-full max-w-md p-8 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl animate-in fade-in zoom-in-95 duration-300">
-
         {/* Header Section */}
         <div className="flex flex-col items-center mb-8">
           <div className="w-24 h-24 rounded-full overflow-hidden shadow-[0_0_25px_rgba(59,130,246,0.5)] mb-6 animate-float border-2 border-white/10">
-            <img src="./assets/logo.gif" alt="InfiJobs Logo" className="w-full h-full object-cover" />
+            <img src="/assets/logo.gif" alt="InfiJobs Logo" className="w-full h-full object-cover" />
           </div>
-          <div className="h-12 text-blue-400 font-bold text-xl text-center leading-tight drop-shadow-md">
-            {typedText}
-            <span className="animate-pulse text-white ml-1">|</span>
-          </div>
+
+          {/* Headline removed to avoid stale/duplicated copy issues */}
         </div>
 
         {/* Form Section */}
@@ -154,7 +125,7 @@ const AuthOverlay: React.FC = () => {
 
           <div className="relative">
             <input
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               className="w-full p-3 rounded-lg bg-black/30 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               value={password}
@@ -212,8 +183,9 @@ const AuthOverlay: React.FC = () => {
 
         {/* Footer Toggle */}
         <div className="mt-6 text-center text-sm text-gray-400">
-          {isSignUp ? "Already have an account? " : "New to InfiJobs? "}
+          {isSignUp ? 'Already have an account? ' : 'New to InfiJobs? '}
           <button
+            type="button"
             onClick={() => {
               setIsSignUp(!isSignUp);
               setError('');
